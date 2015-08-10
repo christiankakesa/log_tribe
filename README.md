@@ -20,12 +20,29 @@ Or install it yourself as:
 
 ## Usage
 
+### Basic example
+
 ```ruby
 log = LogTribe::Loggers.new([Logger.new(STDOUT), Fluent::Logger::FluentLogger.new(nil, host: 'srv', port: 10_010)],
                             { tag_name: 'app_name.app_type' })
 log.info 'this log message is send to the 2 loggers passed in parameter'
 log.debug 'debug message send too...'
 log.close # Or not...
+```
+### Sinatra example
+
+```ruby
+# your_sinatra_app.rb
+require 'log_tribe'
+# ...
+configure do
+  # ...
+  enable :logging
+  log_tribe = LogTribe::Loggers.new([Logger.new(STDOUT), 
+                                     Fluent::Logger::FluentLogger.new(nil, host: 'srv', port: 10_010)])
+  use Rack::CommonLogger, log_tribe
+end
+# ...
 ```
 
 ## Contributing
