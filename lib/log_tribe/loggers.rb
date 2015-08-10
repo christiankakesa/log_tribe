@@ -11,7 +11,7 @@ module LogTribe
     def level=(value)
       @level = value
       @loggers.each do |logger|
-        logger.level = value
+        logger.level = value if logger.respond_to?(:level)
       end
     end
 
