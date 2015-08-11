@@ -37,7 +37,6 @@ require 'log_tribe'
 # ...
 configure do
   # ...
-  enable :logging
   log_tribe = LogTribe::Loggers.new([Logger.new(STDOUT), 
                                      Fluent::Logger::FluentLogger.new(nil, host: 'srv', port: 10_010)])
   use Rack::CommonLogger, log_tribe
