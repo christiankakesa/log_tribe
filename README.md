@@ -29,6 +29,7 @@ log.info 'this log message is send to the 2 loggers passed in parameter'
 log.debug 'debug message send too...'
 log.close # Or not...
 ```
+
 ### Sinatra example
 
 ```ruby
