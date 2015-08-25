@@ -1,4 +1,4 @@
-# LogTribe
+# LogTribe [![Gem Version](https://badge.fury.io/rb/log_tribe.svg)](http://badge.fury.io/rb/log_tribe)
 
 Write logs messages to multiple destinations.
 
