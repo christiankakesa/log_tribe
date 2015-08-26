@@ -1,4 +1,4 @@
-# LogTribe [![Gem Version](https://badge.fury.io/rb/log_tribe.svg)](http://badge.fury.io/rb/log_tribe)
+# LogTribe [![Gem Version](https://badge.fury.io/rb/log_tribe.svg)](http://badge.fury.io/rb/log_tribe) [![Build Status](https://travis-ci.org/fenicks/log_tribe.svg?branch=master)](https://travis-ci.org/fenicks/log_tribe) [![Coverage Status](https://coveralls.io/repos/fenicks/log_tribe/badge.svg?branch=master&service=github)](https://coveralls.io/github/fenicks/log_tribe?branch=master)
 
 Write logs messages to multiple destinations.
 
