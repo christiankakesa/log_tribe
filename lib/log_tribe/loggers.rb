@@ -11,6 +11,7 @@ module LogTribe
     def level=(value)
       @level = value
       @loggers.each do |logger|
+        next unless logger
         logger.level = value if logger.respond_to?(:level)
       end
     end
@@ -22,6 +23,7 @@ module LogTribe
     def progname=(value)
       @progname = value
       @loggers.each do |logger|
+        next unless logger
         logger.progname = value if logger.respond_to?(:progname)
       end
     end
@@ -35,6 +37,7 @@ module LogTribe
     def datetime_format=(datetime_format)
       @datetime_format = datetime_format
       @loggers.each do |logger|
+        next unless logger
         logger.datetime_format = datetime_format if logger.respond_to?(:datetime_format)
       end
     end
@@ -57,6 +60,7 @@ module LogTribe
     def formatter=(callable)
       @formatter = callable
       @loggers.each do |logger|
+        next unless logger
         logger.formatter = callable if logger.respond_to?(:formatter)
       end
     end
@@ -140,6 +144,7 @@ module LogTribe
     #
     def add(severity, message = nil, progname = nil, &block)
       @loggers.each do |logger|
+        next unless logger
         if logger.respond_to?(:add)
           logger.add(severity, message, progname, &block)
         elsif defined?(::Fluent::Logger) && logger.respond_to?(:post)
@@ -158,6 +163,7 @@ module LogTribe
     #
     def <<(msg)
       @loggers.each do |logger|
+        next unless logger
         if logger.respond_to?(:<<)
           logger << msg
         elsif defined?(::Fluent::Logger) && logger.respond_to?(:post)
@@ -172,6 +178,7 @@ module LogTribe
     #
     def close
       @loggers.each do |logger|
+        next unless logger
         logger.close if logger.respond_to?(:close)
       end
     end
