@@ -179,7 +179,10 @@ module LogTribe
     def close
       @loggers.each do |logger|
         next unless logger
-        logger.close if logger.respond_to?(:close)
+        log_device = logger.instance_variable_get('@logdev')
+        next unless log_device
+        log_device.flush if log_device.respond_to?(:flush)
+        logger.close if log_device.respond_to?(:stat)
       end
     end
   end
