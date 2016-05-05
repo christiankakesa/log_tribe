@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 # Fluentd mock class
@@ -17,24 +19,24 @@ module Fluent
 end
 
 describe LogTribe do
-  it 'LogTribe has a version number' do
+  it 'LogTribe has a version number'.freeze do
     expect(LogTribe::VERSION).not_to be nil
   end
 
-  describe 'Tests LogTribe instance without @tag_name' do
+  describe 'Tests LogTribe instance without @tag_name'.freeze do
     let! :logger do
       LogTribe::Loggers.new(::Logger.new(STDOUT))
     end
 
-    it 'create a non null LogTribe#loggers instance' do
+    it 'create a non null LogTribe#loggers instance'.freeze do
       expect(logger).not_to be nil
     end
 
-    it '@tag_name must be nil' do
+    it '@tag_name must be nil'.freeze do
       expect(logger.tag_name).to be nil
     end
 
-    it 'set a specific @level' do
+    it 'set a specific @level'.freeze do
       expect(logger.level).to eq(::Logger::DEBUG)
       logger.level = ::Logger::INFO
       expect(logger.level).to eq(::Logger::INFO)
@@ -43,9 +45,9 @@ describe LogTribe do
       end
     end
 
-    it 'set a specific @progname' do
+    it 'set a specific @progname'.freeze do
       expect(logger.progname).to be nil
-      progname_ = 'log_tribe_program'
+      progname_ = 'log_tribe_program'.freeze
       logger.progname = progname_
       expect(logger.progname).to eq(progname_)
       logger.loggers.each do |l|
@@ -53,9 +55,9 @@ describe LogTribe do
       end
     end
 
-    it 'set a specific @datetime_format' do
+    it 'set a specific @datetime_format'.freeze do
       expect(logger.datetime_format).to be nil
-      datetime_format_ = '%Y-%m-%dT%H:%M:%S+%:z'
+      datetime_format_ = '%Y-%m-%dT%H:%M:%S+%:z'.freeze
       logger.datetime_format = datetime_format_
       expect(logger.datetime_format).to eq(datetime_format_)
       logger.loggers.each do |l|
@@ -63,7 +65,7 @@ describe LogTribe do
       end
     end
 
-    it 'set a specific @formatter' do
+    it 'set a specific @formatter'.freeze do
       expect(logger.formatter).to be nil
       formatter_proc_ = proc { |severity, datetime, _progname, msg| "#{severity} [#{datetime}]: #{msg}\n" }
       logger.formatter = formatter_proc_
@@ -73,42 +75,42 @@ describe LogTribe do
       end
     end
 
-    it '@default_formatter must be an instance of ::Logger::Formatter' do
+    it '@default_formatter must be an instance of ::Logger::Formatter'.freeze do
       expect(logger.default_formatter).to be_a(::Logger::Formatter)
     end
 
-    it 'reasonably test a #add wrapper method through logger#info severity' do
+    it 'reasonably test a #add wrapper method through logger#info severity'.freeze do
       console_ = StringIO.new
       logger_ = LogTribe::Loggers.new([::Logger.new(console_), Fluent::Logger::MockFluentLogger.new(console_)])
-      expect { logger_.info 'This this a message' }.not_to raise_error(Exception)
+      expect { logger_.info 'This this a message'.freeze }.not_to raise_error(Exception)
     end
 
-    it 'reasonably test a #<< wrapper method (raw logging)' do
+    it 'reasonably test a #<< wrapper method (raw logging)'.freeze do
       console_ = StringIO.new
       logger_ = LogTribe::Loggers.new([::Logger.new(console_), Fluent::Logger::MockFluentLogger.new(console_)])
-      expect { logger_ << 'This this a message' }.not_to raise_error(Exception)
+      expect { logger_ << 'This this a message'.freeze }.not_to raise_error(Exception)
     end
 
-    it 'reasonably test a #close wrapper method' do
+    it 'reasonably test a #close wrapper method'.freeze do
       logger_ = LogTribe::Loggers.new(::Logger.new(StringIO.new))
       expect { logger_.close }.not_to raise_error(Exception) if logger_.respond_to?(:close)
     end
   end
 
-  describe 'Tests LogTribe instance with "tag_name"' do
+  describe 'Tests LogTribe instance with "tag_name"'.freeze do
     let! :tag_name do
-      'test_tag'
+      'test_tag'.freeze
     end
 
     let! :logger_tag do
       LogTribe::Loggers.new(::Logger.new(STDOUT), tag_name: tag_name)
     end
 
-    it 'create a non null LogTribe#loggers instance' do
+    it 'create a non null LogTribe#loggers instance'.freeze do
       expect(logger_tag).not_to be nil
     end
 
-    it '@tag_name must be set' do
+    it '@tag_name must be set'.freeze do
       expect(logger_tag.tag_name).to eq(tag_name)
     end
   end
