@@ -31,6 +31,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec'.freeze, '~> 3.3'.freeze
   spec.add_development_dependency 'simplecov'.freeze, '~> 0'.freeze
   spec.add_development_dependency 'coveralls'.freeze, '~> 0'.freeze
-  spec.add_development_dependency 'memory_profiler'.freeze, '~> 0'.freeze
+  spec.add_development_dependency 'memory_profiler'.freeze, '~> 0'.freeze if RUBY_VERSION >= '2.1.0'
   spec.add_development_dependency 'yard'.freeze, '~> 0'.freeze
 end
