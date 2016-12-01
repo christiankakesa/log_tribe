@@ -151,7 +151,7 @@ module LogTribe
           logger.add(severity, message, progname, &block)
         elsif defined?(::Fluent::Logger) && logger.respond_to?(:post)
           # FluentLogger
-          logger.post(@tag_name || 'none'.freeze,
+          logger.post(@tag_name || 'none',
                       message: format_message(format_severity(severity), Time.now, progname, message)
                      )
         end
@@ -170,7 +170,7 @@ module LogTribe
           logger << msg
         elsif defined?(::Fluent::Logger) && logger.respond_to?(:post)
           # FluentLogger
-          logger.post(@tag_name || 'none'.freeze, message: msg)
+          logger.post(@tag_name || 'none', message: msg)
         end
       end
     end
