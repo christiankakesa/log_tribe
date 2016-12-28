@@ -96,10 +96,7 @@ module LogTribe
     def initialize(log_or_logs_array, options = {})
       @loggers = Array(log_or_logs_array)
       @tag_name = options.delete(:tag_name)
-      @level = DEBUG
-      @progname = nil
-      @datetime_format = nil
-      @formatter = nil
+      @level = INFO
       @default_formatter = Formatter.new
     end
 
