@@ -37,11 +37,11 @@ describe LogTribe do
     end
 
     it 'set a specific @level' do
-      expect(logger.level).to eq(::Logger::DEBUG)
-      logger.level = ::Logger::INFO
       expect(logger.level).to eq(::Logger::INFO)
+      logger.level = ::Logger::DEBUG
+      expect(logger.level).to eq(::Logger::DEBUG)
       logger.loggers.each do |l|
-        expect(l.level).to eq(::Logger::INFO) if l.respond_to?(:level)
+        expect(l.level).to eq(::Logger::DEBUG) if l.respond_to?(:level)
       end
     end
 
